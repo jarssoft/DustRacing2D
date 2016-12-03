@@ -226,7 +226,7 @@ void Track::renderTiles(
     {
         MCSurface * surface = iter->first;
         surface->setShaderProgram(prog);
-        surface->bindMaterial();
+        surface->bind();
 
         for (unsigned int i = 0; i < iter->second.size(); i++)
         {

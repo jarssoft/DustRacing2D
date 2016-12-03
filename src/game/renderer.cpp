@@ -236,9 +236,9 @@ void Renderer::render()
     glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     dummyMaterial->setTexture(m_shadowFbo->texture(), 0);
-    MCSurface ss(dummyMaterial, 2.0f, 2.0f);
+    MCSurface ss("dummy1", dummyMaterial, 2.0f, 2.0f);
     ss.setShaderProgram(program("fbo"));
-    ss.bindMaterial();
+    ss.bind();
     ss.render(nullptr, MCVector3dF(), 0);
     glDisable(GL_BLEND);
     m_scene->renderCommonHUD();
@@ -254,9 +254,9 @@ void Renderer::render()
     }
 
     dummyMaterial->setTexture(m_fbo->texture(), 0);
-    MCSurface sd(dummyMaterial, 2.0f, 2.0f);
+    MCSurface sd("dummy2", dummyMaterial, 2.0f, 2.0f);
     sd.setShaderProgram(program("fbo"));
-    sd.bindMaterial();
+    sd.bind();
     sd.render(nullptr, MCVector3dF(), 0);
 }
 

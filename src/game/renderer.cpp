@@ -128,16 +128,15 @@ void Renderer::createProgramFromSource(std::string handle, std::string vshSource
 void Renderer::loadShaders()
 {
     // Engine defaults
-    m_shaderHash["default"]             = MCGLScene::instance().defaultShaderProgram();
-    m_shaderHash["defaultSpecular"]     = MCGLScene::instance().defaultSpecularShaderProgram();
-    m_shaderHash["defaultShadow"]       = MCGLScene::instance().defaultShadowShaderProgram();
-    m_shaderHash["text"]                = MCGLScene::instance().defaultTextShaderProgram();
-    m_shaderHash["textShadow"]          = MCGLScene::instance().defaultTextShadowShaderProgram();
+    m_shaderHash["default"] = MCGLScene::instance().defaultShaderProgram();
+    m_shaderHash["defaultSpecular"] = MCGLScene::instance().defaultSpecularShaderProgram();
+    m_shaderHash["defaultShadow"] = MCGLScene::instance().defaultShadowShaderProgram();
+    m_shaderHash["text"] = MCGLScene::instance().defaultTextShaderProgram();
+    m_shaderHash["textShadow"] = MCGLScene::instance().defaultTextShadowShaderProgram();
 
     // Custom shaders
-    createProgramFromSource("car",    carVsh,  carFsh);
-    createProgramFromSource("fbo",    fboVsh,  fboFsh);
-    createProgramFromSource("menu",   menuVsh, MCGLShaderProgram::getDefaultFragmentShaderSource());
+    createProgramFromSource("car", carVsh, carFsh);
+    createProgramFromSource("fbo", fboVsh, fboFsh);
     createProgramFromSource("tile2d", tileVsh, MCGLShaderProgram::getDefaultFragmentShaderSource());
     createProgramFromSource("tile3d", tileVsh, tile3dFsh);
 }
@@ -368,12 +367,6 @@ void Renderer::mouseMoveEvent(QMouseEvent * event)
 {
     assert(m_eventHandler);
     m_eventHandler->handleMouseMoveEvent(event);
-}
-
-void Renderer::closeEvent(QCloseEvent * event)
-{
-    event->accept();
-    emit closed();
 }
 
 void Renderer::setScene(Scene & scene)

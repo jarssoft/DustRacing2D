@@ -100,7 +100,7 @@ void Bridge::collisionEvent(MCCollisionEvent & event)
     }
 }
 
-void Bridge::onStepTime(MCFloat)
+void Bridge::onStepTime(int)
 {
     const int frameTolerance = 2;
     auto iter = m_objectsOnBridge.begin();

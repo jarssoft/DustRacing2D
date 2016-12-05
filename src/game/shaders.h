@@ -28,7 +28,6 @@ static const char * carVsh =
 "uniform   mat4  vp;\n"
 "uniform   mat4  v;\n"
 "uniform   mat4  model;\n"
-"uniform   float fade;\n"
 "uniform   vec4  dd;\n"
 "uniform   vec4  dc;\n"
 "uniform   vec4  sd;\n"
@@ -73,7 +72,6 @@ static const char * carFsh =
 "uniform sampler2D tex2;\n"
 "uniform vec4      dd;\n"
 "uniform vec4      dc;\n"
-"uniform float     fade;\n"
 "varying vec4      ddRotated;\n"
 "varying vec2      texCoord0;\n"
 "varying vec2      texCoord1;\n"
@@ -95,7 +93,7 @@ static const char * carFsh =
 "        float di = dot(-ddRotated, N) * dc.a;\n"
 "        float refl = 0.33 * ((1.0 - texColor.r) + texColor.g + (1.0 - texColor.b));\n"
 "        refl *= refl * refl;\n"
-"        gl_FragColor = 0.80 * (sky * refl + texColor * (1.0 - refl) + (vec4(dc.rgb, 1.0) + vColor) * di) * fade;\n"
+"        gl_FragColor = 0.80 * (sky * refl + texColor * (1.0 - refl) + (vec4(dc.rgb, 1.0) + vColor) * di);\n"
 "    }\n"
 "}\n";
 
@@ -123,28 +121,6 @@ static const char * fboFsh =
 "    gl_FragColor = texture2D(tex0, texCoord0);\n"
 "}\n";
 
-static const char * menuVsh =
-"#version 120\n"
-""
-"attribute vec3 inVertex;\n"
-"attribute vec3 inNormal;\n"
-"attribute vec2 inTexCoord;\n"
-"attribute vec4 inColor;\n"
-"uniform vec4 scale;\n"
-"uniform vec4 color;\n"
-"uniform mat4 vp;\n"
-"uniform mat4 model;\n"
-"uniform float fade;\n"
-"varying vec2 texCoord0;\n"
-"varying vec4 vColor;\n"
-""
-"void main()\n"
-"{\n"
-"    gl_Position = vp * model * (vec4(inVertex, 1) * scale);\n"
-"    vColor      = inColor * color * fade;\n"
-"    texCoord0   = inTexCoord;\n"
-"}\n";
-
 static const char * tileVsh =
 "#version 120\n"
 ""
@@ -155,7 +131,6 @@ static const char * tileVsh =
 "uniform vec4 scale;\n"
 "uniform mat4 vp;\n"
 "uniform mat4 model;\n"
-"uniform float fade;\n"
 "uniform vec4 dd;\n"
 "uniform vec4 dc;\n"
 "uniform vec4 ac;\n"
@@ -169,7 +144,7 @@ static const char * tileVsh =
 "    float di = dot(dd, vec4(-inNormal, 1)) * dc.a;\n"
 "    vColor = inColor * (\n"
 "        vec4(ac.rgb, 1.0) * ac.a +\n"
-"        vec4(dc.rgb, 1.0) * di) * fade;\n"
+"        vec4(dc.rgb, 1.0) * di);\n"
 ""
 "    texCoord0 = inTexCoord;\n"
 "    texCoord1 = inTexCoord;\n"

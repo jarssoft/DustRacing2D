@@ -13,6 +13,7 @@
 // You should have received a copy of the GNU General Public License
 // along with Dust Racing 2D. If not, see <http://www.gnu.org/licenses/>.
 
+#include "race.hpp"
 #include "ai.hpp"
 #include "car.hpp"
 #include "track.hpp"
@@ -39,6 +40,29 @@ Car & AI::car() const
     return m_car;
 }
 
+//keep angles between -180 and 180 degrees
+MCFloat normalizeAngle(MCFloat angle){
+    bool ok = false;
+    while (!ok)
+    {
+        if (angle > 180)
+        {
+            angle = angle - 360;
+            ok = false;
+        }
+        else if (angle < -180)
+        {
+            angle = angle + 360;
+            ok = false;
+        }
+        else
+        {
+            ok = true;
+        }
+    }
+    return angle;
+}
+
 void AI::update(bool isRaceCompleted)
 {
     if (m_track)
@@ -54,7 +78,7 @@ void AI::update(bool isRaceCompleted)
         steerControl(route.get(m_car.currentTargetNodeIndex()));
 
         TrackTile & currentTile = *m_track->trackTileAtLocation(m_car.location().i(), m_car.location().j());
-        speedControl(currentTile, isRaceCompleted);
+        speedControl(currentTile, isRaceCompleted, route.get(m_car.currentTargetNodeIndex()), route.get(m_car.nextTargetNodeIndex()));
 
         m_lastTargetNodeIndex = m_car.currentTargetNodeIndex();
     }
@@ -73,26 +97,7 @@ void AI::steerControl(TargetNodePtr tnode)
 
     MCFloat angle = MCTrigonom::radToDeg(std::atan2(target.j(), target.i()));
     MCFloat cur   = static_cast<int>(m_car.angle()) % 360;
-    MCFloat diff  = angle - cur;
-
-    bool ok = false;
-    while (!ok)
-    {
-        if (diff > 180)
-        {
-            diff = diff - 360;
-            ok = false;
-        }
-        else if (diff < -180)
-        {
-            diff = diff + 360;
-            ok = false;
-        }
-        else
-        {
-            ok = true;
-        }
-    }
+    MCFloat diff  = normalizeAngle(angle - cur);
 
     // PID-controller. This makes the computer players to turn and react faster
     // than the human player, but hey...they are stupid.
@@ -115,7 +120,7 @@ void AI::steerControl(TargetNodePtr tnode)
     m_lastDiff = diff;
 }
 
-void AI::speedControl(TrackTile & currentTile, bool isRaceCompleted)
+void AI::speedControl(TrackTile & currentTile, bool isRaceCompleted, TargetNodePtr currentNode, TargetNodePtr nextNode)
 {
     // TODO: Maybe it'd be possible to adjust speed according to
     // the difference between current and target angles so that
@@ -132,8 +137,10 @@ void AI::speedControl(TrackTile & currentTile, bool isRaceCompleted)
     }
     else
     {
+        
         // The following speed limits are experimentally defined.
         float scale = 0.9f;
+        /*
         if (currentTile.computerHint() == TrackTile::CH_BRAKE)
         {
             if (absSpeed > 14.0f * scale)
@@ -149,7 +156,7 @@ void AI::speedControl(TrackTile & currentTile, bool isRaceCompleted)
                 brake = true;
             }
         }
-
+*/
         if (currentTile.tileTypeEnum() == TrackTile::TT_CORNER_90)
         {
             if (absSpeed > 7.0f * scale)
@@ -166,7 +173,38 @@ void AI::speedControl(TrackTile & currentTile, bool isRaceCompleted)
                 accelerate = false;
             }
         }
+        
+        //brakes if car is on wrong course before the next segment
 
+        const MCVector3dF currentNodeLoc(currentNode->location().x(), currentNode->location().y());
+
+        MCVector3dF currentCourse(currentNodeLoc);
+        currentCourse -= MCVector3dF(m_car.location());
+
+        MCVector3dF nextCourse(nextNode->location().x(), nextNode->location().y());
+        nextCourse -= currentNodeLoc;
+
+        //ignore zero-length segment
+        if(nextCourse.j() != 0 && nextCourse.i() != 0){
+
+            const MCFloat currentAngle = MCTrigonom::radToDeg(std::atan2(currentCourse.j(), currentCourse.i()));
+            const MCFloat targetAngle = MCTrigonom::radToDeg(std::atan2(nextCourse.j(), nextCourse.i()));
+            const MCFloat diff   = normalizeAngle(currentAngle - targetAngle);           
+
+            if(fabs(diff)>15 && absSpeed > (10.0f) * scale && isInsideCheckPoint(m_car, currentNode, 220)){
+                brake = true;
+            }                       
+            if(fabs(diff)>30 && absSpeed >  (9.0f) * scale && isInsideCheckPoint(m_car, currentNode, 150)){
+                brake = true;
+            }                
+            if(fabs(diff)>40 && absSpeed >  (8.0f) * scale && isInsideCheckPoint(m_car, currentNode, 100)){
+                brake = true;
+            }
+            if(fabs(diff)>50 && absSpeed >  (7.0f) * scale && isInsideCheckPoint(m_car, currentNode,  50)){
+                brake = true;
+            }
+        }
+          
         if (absSpeed < 3.6f * scale)
         {
             accelerate = true;

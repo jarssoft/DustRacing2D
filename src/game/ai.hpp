@@ -48,7 +48,7 @@ private:
     void steerControl(TargetNodePtr tnode);
 
     //! Brake/accelerate logic.
-    void speedControl(TrackTile & currentTile, bool isRaceCompleted);
+    void speedControl(TrackTile & currentTile, bool isRaceCompleted, TargetNodePtr currentNode, TargetNodePtr nextNode);
 
     void setRandomTolerance();
 

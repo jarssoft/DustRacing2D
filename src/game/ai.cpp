@@ -140,23 +140,57 @@ void AI::speedControl(TrackTile & currentTile, bool isRaceCompleted, TargetNodeP
         
         // The following speed limits are experimentally defined.
         float scale = 0.9f;
-        /*
-        if (currentTile.computerHint() == TrackTile::CH_BRAKE)
-        {
-            if (absSpeed > 14.0f * scale)
+        
+        if(m_car.index() % 2){
+            if (currentTile.computerHint() == TrackTile::CH_BRAKE)
             {
-                brake = true;
+                if (absSpeed > 14.0f * scale)
+                {
+                    brake = true;
+                }
+            }
+
+            if (currentTile.computerHint() == TrackTile::CH_BRAKE_HARD)
+            {
+                if (absSpeed > 9.5f * scale)
+                {
+                    brake = true;
+                }
+            }
+        }else{
+                
+            //brakes if car is on wrong course before the next segment
+
+            const MCVector3dF currentNodeLocation(currentNode->location().x(), currentNode->location().y());
+
+            MCVector3dF currentCourse(currentNodeLocation);
+            currentCourse -= MCVector3dF(m_car.location());
+
+            MCVector3dF nextCourse(nextNode->location().x(), nextNode->location().y());
+            nextCourse -= currentNodeLocation;
+
+            //ignore zero-length segment
+            if(nextCourse.j() != 0 && nextCourse.i() != 0){
+
+                const MCFloat currentAngle = MCTrigonom::radToDeg(std::atan2(currentCourse.j(), currentCourse.i()));
+                const MCFloat targetAngle = MCTrigonom::radToDeg(std::atan2(nextCourse.j(), nextCourse.i()));
+                const MCFloat diff   = normalizeAngle(currentAngle - targetAngle);           
+
+                if(fabs(diff)>15 && absSpeed > (12.0f) * scale && isInsideCheckPoint(m_car, currentNode, 220)){
+                    brake = true;
+                }                       
+                if(fabs(diff)>30 && absSpeed >  (10.0f) * scale && isInsideCheckPoint(m_car, currentNode, 150)){
+                    brake = true;
+                }                
+                if(fabs(diff)>40 && absSpeed >  (8.0f) * scale && isInsideCheckPoint(m_car, currentNode, 100)){
+                    accelerate = false;
+                }
+                if(fabs(diff)>50 && absSpeed >  (7.0f) * scale && isInsideCheckPoint(m_car, currentNode,  50)){
+                    accelerate = false;
+                }
             }
         }
 
-        if (currentTile.computerHint() == TrackTile::CH_BRAKE_HARD)
-        {
-            if (absSpeed > 9.5f * scale)
-            {
-                brake = true;
-            }
-        }
-*/
         if (currentTile.tileTypeEnum() == TrackTile::TT_CORNER_90)
         {
             if (absSpeed > 7.0f * scale)
@@ -171,37 +205,6 @@ void AI::speedControl(TrackTile & currentTile, bool isRaceCompleted, TargetNodeP
             if (absSpeed > 8.3f * scale)
             {
                 accelerate = false;
-            }
-        }
-        
-        //brakes if car is on wrong course before the next segment
-
-        const MCVector3dF currentNodeLoc(currentNode->location().x(), currentNode->location().y());
-
-        MCVector3dF currentCourse(currentNodeLoc);
-        currentCourse -= MCVector3dF(m_car.location());
-
-        MCVector3dF nextCourse(nextNode->location().x(), nextNode->location().y());
-        nextCourse -= currentNodeLoc;
-
-        //ignore zero-length segment
-        if(nextCourse.j() != 0 && nextCourse.i() != 0){
-
-            const MCFloat currentAngle = MCTrigonom::radToDeg(std::atan2(currentCourse.j(), currentCourse.i()));
-            const MCFloat targetAngle = MCTrigonom::radToDeg(std::atan2(nextCourse.j(), nextCourse.i()));
-            const MCFloat diff   = normalizeAngle(currentAngle - targetAngle);           
-
-            if(fabs(diff)>15 && absSpeed > (10.0f) * scale && isInsideCheckPoint(m_car, currentNode, 220)){
-                brake = true;
-            }                       
-            if(fabs(diff)>30 && absSpeed >  (9.0f) * scale && isInsideCheckPoint(m_car, currentNode, 150)){
-                brake = true;
-            }                
-            if(fabs(diff)>40 && absSpeed >  (8.0f) * scale && isInsideCheckPoint(m_car, currentNode, 100)){
-                brake = true;
-            }
-            if(fabs(diff)>50 && absSpeed >  (7.0f) * scale && isInsideCheckPoint(m_car, currentNode,  50)){
-                brake = true;
             }
         }
           

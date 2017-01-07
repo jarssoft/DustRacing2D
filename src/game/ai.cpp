@@ -75,10 +75,12 @@ void AI::update(bool isRaceCompleted)
         m_car.clearStatuses();
 
         const Route & route = m_track->trackData().route();
-        steerControl(route.get(m_car.currentTargetNodeIndex()));
+        calculateAngles(route.get(m_car.currentTargetNodeIndex()), route.get(m_car.nextTargetNodeIndex()));
+
+        steerControl();
 
         TrackTile & currentTile = *m_track->trackTileAtLocation(m_car.location().i(), m_car.location().j());
-        speedControl(currentTile, isRaceCompleted, route.get(m_car.currentTargetNodeIndex()), route.get(m_car.nextTargetNodeIndex()));
+        speedControl(currentTile, isRaceCompleted);
 
         m_lastTargetNodeIndex = m_car.currentTargetNodeIndex();
     }
@@ -89,15 +91,27 @@ void AI::setRandomTolerance()
     m_randomTolerance = MCRandom::randomVector2d() * TrackTileBase::TILE_W / 8;
 }
 
-void AI::steerControl(TargetNodePtr tnode)
+void AI::calculateAngles(TargetNodePtr currentNode, TargetNodePtr nextNode)
 {
-    // Initial target coordinates
-    MCVector3dF target(tnode->location().x(), tnode->location().y());
-    target -= MCVector3dF(m_car.location() + MCVector3dF(m_randomTolerance));
+    MCVector3dF currentNodeLocation(currentNode->location().x(), currentNode->location().y());
+    currentNodeLocation+=MCVector3dF(m_randomTolerance);
 
-    MCFloat angle = MCTrigonom::radToDeg(std::atan2(target.j(), target.i()));
-    MCFloat cur   = static_cast<int>(m_car.angle()) % 360;
-    MCFloat diff  = normalizeAngle(angle - cur);
+    m_carAngle = static_cast<int>(m_car.angle()) % 360;
+
+    MCVector3dF currentCourse(currentNodeLocation);
+    currentCourse -= MCVector3dF(m_car.location());
+    m_targetAngle = MCTrigonom::radToDeg(std::atan2(currentCourse.j(), currentCourse.i()));
+    m_distanceToTarget = currentCourse.length();
+
+    MCVector3dF nextCourse(nextNode->location().x(), nextNode->location().y());
+    nextCourse -= currentNodeLocation;
+    m_nextSegmentAngle = MCTrigonom::radToDeg(std::atan2(nextCourse.j(), nextCourse.i()));
+    m_nextSegmentLenght = nextCourse.length();
+}
+
+void AI::steerControl()
+{
+    MCFloat diff  = normalizeAngle(m_targetAngle - m_carAngle);
 
     // PID-controller. This makes the computer players to turn and react faster
     // than the human player, but hey...they are stupid.
@@ -120,7 +134,7 @@ void AI::steerControl(TargetNodePtr tnode)
     m_lastDiff = diff;
 }
 
-void AI::speedControl(TrackTile & currentTile, bool isRaceCompleted, TargetNodePtr currentNode, TargetNodePtr nextNode)
+void AI::speedControl(TrackTile & currentTile, bool isRaceCompleted)
 {
     // TODO: Maybe it'd be possible to adjust speed according to
     // the difference between current and target angles so that
@@ -157,57 +171,66 @@ void AI::speedControl(TrackTile & currentTile, bool isRaceCompleted, TargetNodeP
                     brake = true;
                 }
             }
+
+            if (currentTile.tileTypeEnum() == TrackTile::TT_CORNER_90)
+            {
+                if (absSpeed > 7.0f * scale)
+                {
+                    accelerate = false;
+                }
+            }
+
+            if (currentTile.tileTypeEnum() == TrackTile::TT_CORNER_45_LEFT ||
+                currentTile.tileTypeEnum() == TrackTile::TT_CORNER_45_RIGHT)
+            {
+                if (absSpeed > 8.3f * scale)
+                {
+                    accelerate = false;
+                }
+            }
+
         }else{
-                
+
+            //adjust speed according to the difference between current and target angles
+            {
+                const MCFloat diff = normalizeAngle(m_targetAngle - m_carAngle);
+
+                    if(fabs(diff)>15*0.2 && absSpeed > (12.0f) * scale && m_distanceToTarget < 220+110-50){
+                        brake = true;
+                    }
+                    if(fabs(diff)>30*0.2 && absSpeed > (10.0f) * scale && m_distanceToTarget < 150+75-25){
+                        brake = true;
+                    }
+                    if(fabs(diff)>40*0.2 && absSpeed >  (8.0f) * scale && m_distanceToTarget < 100+50){
+                        accelerate = false;
+                    }
+                    if(fabs(diff)>50*0.2 && absSpeed >  (7.0f) * scale && m_distanceToTarget <  50+25){
+                        accelerate = false;
+                    }
+            }
+
             //brakes if car is on wrong course before the next segment
 
-            const MCVector3dF currentNodeLocation(currentNode->location().x(), currentNode->location().y());
+            //ignore zero-length segment because it is finishline
+            if(m_nextSegmentLenght > 0 && true){
 
-            MCVector3dF currentCourse(currentNodeLocation);
-            currentCourse -= MCVector3dF(m_car.location());
+                const MCFloat diff = normalizeAngle(m_targetAngle - m_nextSegmentAngle);
 
-            MCVector3dF nextCourse(nextNode->location().x(), nextNode->location().y());
-            nextCourse -= currentNodeLocation;
-
-            //ignore zero-length segment
-            if(nextCourse.j() != 0 && nextCourse.i() != 0){
-
-                const MCFloat currentAngle = MCTrigonom::radToDeg(std::atan2(currentCourse.j(), currentCourse.i()));
-                const MCFloat targetAngle = MCTrigonom::radToDeg(std::atan2(nextCourse.j(), nextCourse.i()));
-                const MCFloat diff   = normalizeAngle(currentAngle - targetAngle);           
-
-                if(fabs(diff)>15 && absSpeed > (12.0f) * scale && isInsideCheckPoint(m_car, currentNode, 220)){
+                if(fabs(diff)>15 && absSpeed > (12.0f) * scale && m_distanceToTarget < 220+110){
                     brake = true;
                 }                       
-                if(fabs(diff)>30 && absSpeed >  (10.0f) * scale && isInsideCheckPoint(m_car, currentNode, 150)){
+                if(fabs(diff)>30 && absSpeed > (10.0f) * scale && m_distanceToTarget < 150+75){
                     brake = true;
                 }                
-                if(fabs(diff)>40 && absSpeed >  (8.0f) * scale && isInsideCheckPoint(m_car, currentNode, 100)){
-                    accelerate = false;
+                if(fabs(diff)>40 && absSpeed >  (8.0f) * scale && m_distanceToTarget < 100+50){
+                    brake = true;
                 }
-                if(fabs(diff)>50 && absSpeed >  (7.0f) * scale && isInsideCheckPoint(m_car, currentNode,  50)){
-                    accelerate = false;
+                if(fabs(diff)>50 && absSpeed >  (7.0f) * scale && m_distanceToTarget <  50+25){
+                    brake = true;
                 }
             }
         }
 
-        if (currentTile.tileTypeEnum() == TrackTile::TT_CORNER_90)
-        {
-            if (absSpeed > 7.0f * scale)
-            {
-                accelerate = false;
-            }
-        }
-
-        if (currentTile.tileTypeEnum() == TrackTile::TT_CORNER_45_LEFT ||
-            currentTile.tileTypeEnum() == TrackTile::TT_CORNER_45_RIGHT)
-        {
-            if (absSpeed > 8.3f * scale)
-            {
-                accelerate = false;
-            }
-        }
-          
         if (absSpeed < 3.6f * scale)
         {
             accelerate = true;

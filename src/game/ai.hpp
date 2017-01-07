@@ -45,12 +45,14 @@ public:
 private:
 
     //! Steering logic.
-    void steerControl(TargetNodePtr tnode);
+    void steerControl();
 
     //! Brake/accelerate logic.
-    void speedControl(TrackTile & currentTile, bool isRaceCompleted, TargetNodePtr currentNode, TargetNodePtr nextNode);
+    void speedControl(TrackTile & currentTile, bool isRaceCompleted);
 
     void setRandomTolerance();
+
+    void calculateAngles(TargetNodePtr tnode, TargetNodePtr nextNode);
 
     Car & m_car;
 
@@ -63,6 +65,15 @@ private:
     int m_lastTargetNodeIndex;
 
     MCVector2dF m_randomTolerance;
+
+    MCFloat m_carAngle;
+
+    MCFloat m_targetAngle;
+    MCFloat m_distanceToTarget;
+
+    MCFloat m_nextSegmentAngle;
+    MCFloat m_nextSegmentLenght;
+
 };
 
 typedef std::shared_ptr<AI> AIPtr;

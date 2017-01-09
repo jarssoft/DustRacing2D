@@ -57,8 +57,8 @@ void Timing::setLapCompleted(MCUint index, bool isHuman)
             emit lapRecordAchieved(m_lapRecord);
         }
 
-        emit lapCompleted(index, times.lastLapTime);
     }
+    emit lapCompleted(index, times.lastLapTime);
 }
 
 void Timing::setRaceCompleted(MCUint index, bool state, bool isHuman)

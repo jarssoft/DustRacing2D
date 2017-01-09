@@ -22,6 +22,8 @@
 #include "race.hpp"
 #include "timingoverlay.hpp"
 
+#include <../myAI/timelogger.h>
+
 #include <QObject>
 #include <MCCamera>
 #include <memory>
@@ -167,6 +169,8 @@ private:
 
     // Bridges
     std::vector<MCObjectPtr> m_bridges;
+
+    TimeLogger m_timelogger;
 };
 
 #endif // SCENE_HPP

@@ -123,6 +123,8 @@ Scene::Scene(Game & game, StateMachine & stateMachine, Renderer & renderer, MCWo
     connect(m_startlights, SIGNAL(messageRequested(QString)), m_messageOverlay, SLOT(addMessage(QString)));
     connect(this, SIGNAL(listenerLocationChanged(float, float)), &m_game.audioWorker(), SLOT(setListenerLocation(float, float)));
 
+    connect(&(m_race.timing()), SIGNAL(lapCompleted(MCUint,int)), &m_timelogger, SLOT(addLap(MCUint, int)));
+
     m_game.audioWorker().connectAudioSource(m_race);
 
     for (int i = 0; i < 2; i++)
@@ -285,7 +287,8 @@ void Scene::updateFrame(InputHandler & handler, float timeStep)
             }
             else
             {
-                updateCameraLocation(m_camera[0], m_cameraOffset[0], *m_cars.at(0));
+                const int SEURATTAVA_AUTO = 6;
+                updateCameraLocation(m_camera[0], m_cameraOffset[0], *m_cars.at(SEURATTAVA_AUTO));
             }
         }
     }
@@ -579,6 +582,7 @@ void Scene::resizeOverlays()
 void Scene::initRace()
 {
     assert(m_activeTrack);
+    m_timelogger.setTrack(m_activeTrack->trackData().name());
     m_race.init(*m_activeTrack, m_game.lapCount());
 }
 

@@ -200,6 +200,7 @@ HEADERS += \
     STFH/listener.hpp \
     STFH/location.hpp \
     STFH/source.hpp \
+    myAI/timelogger.h
 
 SOURCES += \
     ../common/config.cpp \
@@ -342,6 +343,7 @@ SOURCES += \
     STFH/listener.cpp \
     STFH/location.cpp \
     STFH/source.cpp \
+    myAI/timelogger.cpp
 
 RESOURCES += ../../data/icons/icons.qrc ../../data/images/editor.qrc
 RC_FILE = ../../data/icons/WindowsGame.rc

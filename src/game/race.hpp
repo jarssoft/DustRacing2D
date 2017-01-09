@@ -24,8 +24,6 @@
 #include <unordered_map>
 #include <vector>
 
-#include "../common/targetnodebase.hpp"
-
 #include "audiosource.hpp"
 #include "timing.hpp"
 
@@ -35,8 +33,6 @@ class OffTrackDetector;
 class Route;
 class Track;
 class TrackTile;
-
-bool isInsideCheckPoint(Car & car, TargetNodePtr tnode, int tolerance);
 
 //! Class that controls the race event, checkpoints and timing.
 class Race : public AudioSource

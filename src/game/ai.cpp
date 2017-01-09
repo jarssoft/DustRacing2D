@@ -192,19 +192,19 @@ void AI::speedControl(TrackTile & currentTile, bool isRaceCompleted)
         }else{
 
             //adjust speed according to the difference between current and target angles
-            {
+            if(m_distanceToTarget > 100){
                 const MCFloat diff = normalizeAngle(m_targetAngle - m_carAngle);
 
-                    if(fabs(diff)>15*0.2 && absSpeed > (12.0f) * scale && m_distanceToTarget < 220+110-50){
+                    if(fabs(diff)>15*0.5 && absSpeed > (12.0f) * scale && m_distanceToTarget < 220+110-50){
                         brake = true;
                     }
-                    if(fabs(diff)>30*0.2 && absSpeed > (10.0f) * scale && m_distanceToTarget < 150+75-25){
+                    if(fabs(diff)>30*0.5 && absSpeed > (10.0f) * scale && m_distanceToTarget < 150+75-25){
                         brake = true;
                     }
-                    if(fabs(diff)>40*0.2 && absSpeed >  (8.0f) * scale && m_distanceToTarget < 100+50){
+                    if(fabs(diff)>40*0.5 && absSpeed >  (8.0f) * scale && m_distanceToTarget < 100+50){
                         accelerate = false;
                     }
-                    if(fabs(diff)>50*0.2 && absSpeed >  (7.0f) * scale && m_distanceToTarget <  50+25){
+                    if(fabs(diff)>50*0.5 && absSpeed >  (7.0f) * scale && m_distanceToTarget <  50+25){
                         accelerate = false;
                     }
             }
@@ -212,20 +212,20 @@ void AI::speedControl(TrackTile & currentTile, bool isRaceCompleted)
             //brakes if car is on wrong course before the next segment
 
             //ignore zero-length segment because it is finishline
-            if(m_nextSegmentLenght > 0 && true){
+            if(m_nextSegmentLenght > 0){
 
                 const MCFloat diff = normalizeAngle(m_targetAngle - m_nextSegmentAngle);
 
-                if(fabs(diff)>15 && absSpeed > (12.0f) * scale && m_distanceToTarget < 220+110){
+                if(fabs(diff)>15*1.4 && absSpeed > (12.0f) * scale && m_distanceToTarget < 220+110){
                     brake = true;
                 }                       
-                if(fabs(diff)>30 && absSpeed > (10.0f) * scale && m_distanceToTarget < 150+75){
+                if(fabs(diff)>30*1.4 && absSpeed > (10.0f) * scale && m_distanceToTarget < 150+75){
                     brake = true;
                 }                
-                if(fabs(diff)>40 && absSpeed >  (8.0f) * scale && m_distanceToTarget < 100+50){
+                if(fabs(diff)>40*1.4 && absSpeed >  (8.0f) * scale && m_distanceToTarget < 100+50){
                     brake = true;
                 }
-                if(fabs(diff)>50 && absSpeed >  (7.0f) * scale && m_distanceToTarget <  50+25){
+                if(fabs(diff)>50*1.4 && absSpeed >  (7.0f) * scale && m_distanceToTarget <  50+25){
                     brake = true;
                 }
             }

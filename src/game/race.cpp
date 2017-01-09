@@ -28,7 +28,6 @@
 #include "tracktile.hpp"
 
 #include "../common/config.hpp"
-#include "../common/targetnodebase.hpp"
 
 #include <algorithm>
 #include <cassert>

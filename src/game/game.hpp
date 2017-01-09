@@ -17,12 +17,13 @@
 #define GAME_HPP
 
 #include <QObject>
-#include <QThread>
 #include <QTimer>
 #include <QTime>
+#include <QTranslator>
 
 #include <MCWorld>
 
+#include "application.hpp"
 #include "settings.hpp"
 
 class AudioWorker;
@@ -61,7 +62,7 @@ public:
     };
 
     //! Constructor
-    Game(bool forceNoVSync = false);
+    Game(int & argc, char ** argv);
 
     //! Destructor
     virtual ~Game();
@@ -72,11 +73,7 @@ public:
     //! \return The renderer.
     Renderer & renderer() const;
 
-    //! Start the game.
-    void start();
-
-    //! Stop scene.
-    void stop();
+    int run();
 
     //! Set the game mode.
     void setMode(Mode mode);
@@ -124,11 +121,23 @@ private:
 
     void adjustSceneSize(int hRes, int vRes);
 
-    void createRenderer(bool forceNoVSync);
+    void createRenderer();
 
     void initScene();
 
     bool loadTracks();
+
+    void parseArgs(int argc, char ** argv);
+
+    void start();
+
+    void stop();
+
+    Application m_app;
+
+    QTranslator m_appTranslator;
+
+    bool m_forceNoVSync;
 
     Settings m_settings;
 
@@ -143,10 +152,6 @@ private:
     Renderer * m_renderer;
 
     Scene * m_scene;
-
-    MCAssetManager * m_assetManager;
-
-    MCObjectFactory * m_objectFactory;
 
     TrackLoader * m_trackLoader;
 
@@ -172,7 +177,7 @@ private:
 
     AudioWorker * m_audioWorker;
 
-    QThread m_audioThread;
+    QThread * m_audioThread;
 
     MCWorld m_world;
 

@@ -52,6 +52,7 @@ HEADERS += \
     car.hpp \
     carfactory.hpp \
     carparticleeffectmanager.hpp \
+    carphysicscomponent.hpp \
     carsoundeffectmanager.hpp \
     carstatusview.hpp \
     checkeredflag.hpp \
@@ -108,6 +109,7 @@ HEADERS += \
     tracktile.hpp \
     treeview.hpp \
     updateableif.hpp \
+    userexception.hpp \
     vsyncmenu.hpp \
     MTFH/menu.hpp \
     MTFH/menuitem.hpp \
@@ -132,6 +134,7 @@ HEADERS += \
     MiniCore/Core/mcmathutil.hh \
     MiniCore/Core/mcobbox.hh \
     MiniCore/Core/mcobject.hh \
+    MiniCore/Core/mcobjectcomponent.hh \
     MiniCore/Core/mcobjectdata.hh \
     MiniCore/Core/mcobjectfactory.hh \
     MiniCore/Core/mcrandom.hh \
@@ -180,6 +183,7 @@ HEADERS += \
     MiniCore/Physics/mcimpulsegenerator.hh \
     MiniCore/Physics/mcobjectgrid.hh \
     MiniCore/Physics/mcoutofboundariesevent.hh \
+    MiniCore/Physics/mcphysicscomponent.hh \
     MiniCore/Physics/mcrectshape.hh \
     MiniCore/Physics/mcsegment.hh \
     MiniCore/Physics/mcshape.hh \
@@ -215,6 +219,7 @@ SOURCES += \
     car.cpp \
     carfactory.cpp \
     carparticleeffectmanager.cpp \
+    carphysicscomponent.cpp \
     carsoundeffectmanager.cpp \
     carstatusview.cpp \
     checkeredflag.cpp \
@@ -283,6 +288,7 @@ SOURCES += \
     MiniCore/Core/mcevent.cc \
     MiniCore/Core/mclogger.cc \
     MiniCore/Core/mcobject.cc \
+    MiniCore/Core/mcobjectcomponent.cc \
     MiniCore/Core/mcobjectdata.cc \
     MiniCore/Core/mcobjectfactory.cc \
     MiniCore/Core/mcrandom.cc \
@@ -319,6 +325,7 @@ SOURCES += \
     MiniCore/Physics/mcimpulsegenerator.cc \
     MiniCore/Physics/mcobjectgrid.cc \
     MiniCore/Physics/mcoutofboundariesevent.cc \
+    MiniCore/Physics/mcphysicscomponent.cc \
     MiniCore/Physics/mcrectshape.cc \
     MiniCore/Physics/mcshape.cc \
     MiniCore/Physics/mcspringforcegenerator.cc \

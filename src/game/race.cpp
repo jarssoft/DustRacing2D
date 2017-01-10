@@ -75,9 +75,9 @@ Race::Race(Game & game, unsigned int numCars)
         }
     });
 
-    connect(&m_timing, &Timing::lapCompleted, [this] (MCUint, int msecs) {
+    /*connect(&m_timing, &Timing::lapCompleted, [this] (MCUint, int msecs) {
         emit messageRequested(QString::fromWCharArray(Timing::msecsToString(msecs).c_str()));
-    });
+    });*/
 }
 
 void Race::createStartGridObjects()

@@ -40,6 +40,11 @@ Car & AI::car() const
     return m_car;
 }
 
+QString AI::selitys() const
+{
+    return m_selitys;
+}
+
 //keep angles between -180 and 180 degrees
 MCFloat normalizeAngle(MCFloat angle){
     bool ok = false;
@@ -107,6 +112,12 @@ void AI::calculateAngles(TargetNodePtr currentNode, TargetNodePtr nextNode)
     nextCourse -= currentNodeLocation;
     m_nextSegmentAngle = MCTrigonom::radToDeg(std::atan2(nextCourse.j(), nextCourse.i()));
     m_nextSegmentLenght = nextCourse.length();
+
+    if(nextNode->index()==0)
+        m_nextSegmentLenght=0;
+
+    if(currentNode->index()==0)
+        m_nextSegmentLenght=0;
 }
 
 void AI::steerControl()
@@ -143,6 +154,7 @@ void AI::speedControl(TrackTile & currentTile, bool isRaceCompleted)
     // Braking / acceleration logic
     bool accelerate = true;
     bool brake      = false;
+    m_selitys="";
 
     const float absSpeed = m_car.absSpeed();
     if (isRaceCompleted)
@@ -191,42 +203,63 @@ void AI::speedControl(TrackTile & currentTile, bool isRaceCompleted)
 
         }else{
 
+            // tilannenopeus on iso, kun absoluuttinen nopeus on korkea lähellä mutkaa
+            // vaihtelee välillä -0.5
+            float tilannenopeus = absSpeed * absSpeed / m_distanceToTarget;
+
             //adjust speed according to the difference between current and target angles
-            if(m_distanceToTarget > 100){
+            if(m_distanceToTarget > 30 && false){
                 const MCFloat diff = normalizeAngle(m_targetAngle - m_carAngle);
 
-                    if(fabs(diff)>15*0.5 && absSpeed > (12.0f) * scale && m_distanceToTarget < 220+110-50){
+                    if(fabs(diff)>5 && tilannenopeus>0.36){
                         brake = true;
+                        m_selitys+=QString("t ") + QString::number(tilannenopeus, 'f', 3)+", "+QString::number(fabs(diff), 'f', 1);
                     }
-                    if(fabs(diff)>30*0.5 && absSpeed > (10.0f) * scale && m_distanceToTarget < 150+75-25){
+                    if(fabs(diff)>15 && tilannenopeus>0.25){
                         brake = true;
+                        m_selitys+=QString("t ") + QString::number(tilannenopeus, 'f', 3)+", "+QString::number(fabs(diff), 'f', 1);
                     }
-                    if(fabs(diff)>40*0.5 && absSpeed >  (8.0f) * scale && m_distanceToTarget < 100+50){
+                    if(fabs(diff)>30 && tilannenopeus>0.16){
                         accelerate = false;
+                        m_selitys+=QString("t ") + QString::number(tilannenopeus, 'f', 3)+", "+QString::number(fabs(diff), 'f', 1);
                     }
-                    if(fabs(diff)>50*0.5 && absSpeed >  (7.0f) * scale && m_distanceToTarget <  50+25){
+                    if(fabs(diff)>50 && tilannenopeus>0.09){
                         accelerate = false;
+                        m_selitys+=QString("t ") + QString::number(tilannenopeus, 'f', 3)+", "+QString::number(fabs(diff), 'f', 1);
                     }
+
             }
 
             //brakes if car is on wrong course before the next segment
 
             //ignore zero-length segment because it is finishline
-            if(m_nextSegmentLenght > 0){
+            if(m_nextSegmentLenght > 2){
 
-                const MCFloat diff = normalizeAngle(m_targetAngle - m_nextSegmentAngle);
+                const MCFloat diff = fabs(normalizeAngle(m_targetAngle - m_nextSegmentAngle));
 
-                if(fabs(diff)>15*1.4 && absSpeed > (12.0f) * scale && m_distanceToTarget < 220+110){
+                if(tilannenopeus>0.45 && diff>20){
                     brake = true;
-                }                       
-                if(fabs(diff)>30*1.4 && absSpeed > (10.0f) * scale && m_distanceToTarget < 150+75){
-                    brake = true;
-                }                
-                if(fabs(diff)>40*1.4 && absSpeed >  (8.0f) * scale && m_distanceToTarget < 100+50){
-                    brake = true;
+                    m_selitys=QString("nt1 ") + QString::number(tilannenopeus, 'f', 3)+", "+QString::number(fabs(diff), 'f', 1);
                 }
-                if(fabs(diff)>50*1.4 && absSpeed >  (7.0f) * scale && m_distanceToTarget <  50+25){
+                if(tilannenopeus>0.4 && diff>45+15){
                     brake = true;
+                    m_selitys=QString("nt2 ") + QString::number(tilannenopeus, 'f', 3)+", "+QString::number(fabs(diff), 'f', 1);
+                }
+                if(tilannenopeus>0.35 && diff>90){
+                    brake = true;
+                    m_selitys=QString("nt3 ") + QString::number(tilannenopeus, 'f', 3)+", "+QString::number(fabs(diff), 'f', 1);
+                }                       
+                if(tilannenopeus>0.3 && diff>100){
+                    brake = true;
+                    m_selitys=QString("nt4 ") + QString::number(tilannenopeus, 'f', 3)+", "+QString::number(fabs(diff), 'f', 1);
+                }                
+                if(tilannenopeus>0.20 && diff>110){
+                    brake = true;
+                    m_selitys=QString("nt5 ") + QString::number(tilannenopeus, 'f', 3)+", "+QString::number(fabs(diff), 'f', 1);
+                }
+                if(tilannenopeus>0.09 && diff>130){
+                    brake = true;
+                    m_selitys=QString("nt6 ") + QString::number(tilannenopeus, 'f', 3)+", "+QString::number(fabs(diff), 'f', 1)+", "+QString::number(m_nextSegmentLenght);
                 }
             }
         }

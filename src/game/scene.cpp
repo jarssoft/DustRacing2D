@@ -82,6 +82,8 @@ int Scene::m_width  = 1024;
 int Scene::m_height = 768;
 
 static const MCFloat METERS_PER_UNIT = 0.05f;
+const int SEURATTAVA_AUTO = 6;
+QString viimeinenselitys="";
 
 Scene::Scene(Game & game, StateMachine & stateMachine, Renderer & renderer, MCWorld & world)
 : m_game(game)
@@ -286,8 +288,7 @@ void Scene::updateFrame(InputHandler & handler, float timeStep)
                 }
             }
             else
-            {
-                const int SEURATTAVA_AUTO = 6;
+            {                
                 updateCameraLocation(m_camera[0], m_cameraOffset[0], *m_cars.at(SEURATTAVA_AUTO));
             }
         }
@@ -395,6 +396,12 @@ void Scene::updateAi()
     {
         const bool isRaceCompleted = m_race.timing().raceCompleted(ai->car().index());
         ai->update(isRaceCompleted);
+
+        if(ai->car().index() == SEURATTAVA_AUTO){
+            if(ai->selitys()!="" && ai->selitys()!=viimeinenselitys)
+                emit m_race.messageRequested(ai->selitys());
+            viimeinenselitys=ai->selitys();
+        }
     }
 }
 

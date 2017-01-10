@@ -42,6 +42,9 @@ public:
     //! Get associated car.
     Car & car() const;
 
+    //Selitys tekoälyn päätöksestä
+    QString selitys() const;
+
 private:
 
     //! Steering logic.
@@ -73,6 +76,8 @@ private:
 
     MCFloat m_nextSegmentAngle;
     MCFloat m_nextSegmentLenght;
+
+    QString m_selitys;
 
 };
 

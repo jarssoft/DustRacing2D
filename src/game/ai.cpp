@@ -241,18 +241,18 @@ void AI::speedControl(TrackTile & currentTile, bool isRaceCompleted)
                     brake = true;
                     m_selitys=QString("nt1 ") + QString::number(tilannenopeus, 'f', 3)+", "+QString::number(fabs(diff), 'f', 1);
                 }
-                if(tilannenopeus>0.4 && diff>45+15){
+                if(tilannenopeus>0.40 && diff>60){
                     brake = true;
                     m_selitys=QString("nt2 ") + QString::number(tilannenopeus, 'f', 3)+", "+QString::number(fabs(diff), 'f', 1);
                 }
                 if(tilannenopeus>0.35 && diff>90){
                     brake = true;
                     m_selitys=QString("nt3 ") + QString::number(tilannenopeus, 'f', 3)+", "+QString::number(fabs(diff), 'f', 1);
-                }                       
-                if(tilannenopeus>0.3 && diff>100){
+                }
+                if(tilannenopeus>0.30 && diff>100){
                     brake = true;
                     m_selitys=QString("nt4 ") + QString::number(tilannenopeus, 'f', 3)+", "+QString::number(fabs(diff), 'f', 1);
-                }                
+                }
                 if(tilannenopeus>0.20 && diff>110){
                     brake = true;
                     m_selitys=QString("nt5 ") + QString::number(tilannenopeus, 'f', 3)+", "+QString::number(fabs(diff), 'f', 1);

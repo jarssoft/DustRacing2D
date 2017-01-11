@@ -124,6 +124,14 @@ void AI::steerControl()
 {
     MCFloat diff  = normalizeAngle(m_targetAngle - m_carAngle);
 
+    //koukataan segmenteillä ulkoa ja pisteillä sisältä
+    if(m_car.index() % 2){
+    }else{
+        if(m_nextSegmentLenght > 2){
+            diff -= normalizeAngle(m_nextSegmentAngle - m_targetAngle) * 0.0001 * m_distanceToTarget;
+        }
+    }
+
     // PID-controller. This makes the computer players to turn and react faster
     // than the human player, but hey...they are stupid.
     MCFloat control = diff * 0.025 + (diff - m_lastDiff) * 0.025;

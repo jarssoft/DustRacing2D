@@ -628,3 +628,168 @@ Straight
  -976
  6064
 erojen mediaani: -416
+ti tammikuuta 10 23:16:23 2017
+Triangle
+ 0
+ 0
+ 0
+ 0
+ 0
+erojen mediaani: 0
+
+ti tammikuuta 10 23:44:44 2017
+Triangle
+ 0
+ 0
+ 0
+ 0
+ 0
+erojen mediaani: 0
+
+ti tammikuuta 10 23:54:01 2017
+Triangle
+ 0
+ 0
+ 0
+ 0
+ 0
+erojen mediaani: 0
+
+ti tammikuuta 10 23:55:41 2017
+Triangle
+ 0
+ 0
+ 0
+ 0
+ 0
+erojen mediaani: 0
+
+ti tammikuuta 10 23:57:36 2017
+Triangle
+ 0
+ 0
+ 0
+ 0
+ 0
+erojen mediaani: 0
+
+#aloitetaan vastaliikkeet
+
+ti tammikuuta 10 23:58:52 2017
+Triangle
+11 4 61872
+10 4 64800
+9 4 65056
+8 4 66272
+7 4 68416
+6 4 69344
+5 4 73104
+4 4 74512
+3 4 79248
+2 4 81712
+1 4 86112
+ 2928
+ 1216
+ 928
+ 1408
+ 2464
+erojen mediaani: 1408
+
+ke tammikuuta 11 00:12:09 2017
+Triangle
+10 4 62160
+11 4 62384
+9 4 64912
+8 4 65968
+7 4 68512
+6 4 68832
+5 4 73264
+4 4 73968
+3 4 78816
+2 4 81728
+1 4 85792
+ -224
+ 1056
+ 320
+ 704
+ 2912
+erojen mediaani: 704
+
+ke tammikuuta 11 00:41:09 2017
+Triangle
+ -17136
+ 1840
+ 1856
+ 2160
+ -22720
+erojen mediaani: 1840
+
+ke tammikuuta 11 00:48:23 2017
+Triangle
+ 0
+ 0
+ 0
+ 0
+ 0
+erojen mediaani: 0
+
+#toimiva koukkaus
+
+ke tammikuuta 11 00:49:45 2017
+Triangle
+10 4 62128
+11 4 62160
+8 4 64496
+9 4 65344
+7 4 68208
+6 4 68512
+5 4 73136
+4 4 73904
+3 4 78288
+2 4 80640
+1 4 85536
+ -32
+ -848
+ 304
+ 768
+ 2352
+erojen mediaani: 304
+
+ke tammikuuta 11 01:07:06 2017
+Monza
+10 4 119504
+8 4 124448
+11 4 126816
+9 4 131840
+6 4 132400
+7 4 137680
+4 4 143472
+5 4 144864
+3 4 153728
+2 4 153920
+1 4 169200
+ -7312
+ -7392
+ -5280
+ -1392
+ 192
+erojen mediaani: -5280
+
+ke tammikuuta 11 13:38:39 2017
+Straight
+10 4 110112
+11 4 116528
+8 4 117072
+9 4 118416
+6 4 124832
+7 4 125504
+5 4 132864
+4 4 135744
+3 4 146704
+ -6416
+ -1344
+ -672
+ 2880
+ -992
+erojen mediaani: -992
+

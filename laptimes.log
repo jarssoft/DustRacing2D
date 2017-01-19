@@ -1732,3 +1732,102 @@ Twister
  816
 erojen mediaani: -432
 
+to tammikuuta 19 20:41:55 2017
+Suzuka
+11 4 118928
+10 4 119232
+9 4 122016
+8 4 124544
+6 4 127616
+5 4 130096
+4 4 133760
+7 4 134336
+3 4 137392
+2 4 148816
+1 4 159472
+ 304
+ 2528
+ -6720
+ 3664
+ 11424
+erojen mediaani: 2528
+
+#hidastuslinjaan (absSpeed * absSpeed/400)
+to tammikuuta 19 20:53:41 2017
+Suzuka
+10 4 112960
+11 4 114544
+8 4 118128
+9 4 119520
+7 4 122176
+6 4 124608
+4 4 131184
+5 4 133024
+3 4 141600
+2 4 142768
+ -1584
+ -1392
+ 2432
+ -1840
+ 1168
+erojen mediaani: -1392
+
+to tammikuuta 19 22:53:22 2017
+Suzuka
+ 0
+ 0
+ 0
+ 0
+ 0
+erojen mediaani: 0
+
+to tammikuuta 19 22:55:14 2017
+Suzuka
+ 640
+ 192
+ 2176
+ 1232
+ 2704
+erojen mediaani: 1232
+
+#hidastuslinjaan (absSpeed * absSpeed / m_distanceToTarget) mutta vain jos m_nextSegmentLenght > 30
+to tammikuuta 19 23:20:10 2017
+Suzuka
+11 4 117728
+9 4 118384
+10 4 119616
+8 4 124992
+6 4 125472
+7 4 128752
+5 4 130528
+4 4 142960
+3 4 146560
+2 4 148240
+1 4 161552
+ 1888
+ 6608
+ -3280
+ 12432
+ 1680
+erojen mediaani: 1888
+
+to tammikuuta 19 23:32:08 2017
+Suzuka
+10 4 113024
+11 4 116480
+8 4 118896
+9 4 119872
+6 4 123056
+7 4 124288
+4 4 129488
+5 4 135232
+3 4 139280
+2 4 140880
+1 4 154256
+ -3456
+ -976
+ -1232
+ -5744
+ 1600
+erojen mediaani: -1232
+

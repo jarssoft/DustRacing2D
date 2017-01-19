@@ -431,6 +431,9 @@ void Race::updateRouteProgress(Car & car)
                     currentTargetNodeIndex = 0;
                 }
 
+                //if(car.index()==6)
+                //    emit messageRequested(QString("node ")+QString::number(currentTargetNodeIndex));
+
                 nextTargetNodeIndex = currentTargetNodeIndex;
                 if (++nextTargetNodeIndex >= route.numNodes()){
                     nextTargetNodeIndex = 0;

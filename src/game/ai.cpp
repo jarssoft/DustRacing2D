@@ -230,8 +230,8 @@ void AI::speedControl(TrackTile & currentTile, bool isRaceCompleted)
 
             // tilannenopeus on iso, kun absoluuttinen nopeus on korkea lähellä mutkaa
             // vaihtelee välillä -0.5
-            float tilannenopeus = absSpeed * absSpeed / m_distanceToTarget;
-           // float tilannenopeus = absSpeed * absSpeed/400;
+            //float tilannenopeus = absSpeed * absSpeed / m_distanceToTarget;
+            float tilannenopeus = absSpeed * absSpeed/400;
 
             //adjust speed according to the difference between current and target angles
             if(m_distanceToTarget > 30 && false){

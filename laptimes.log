@@ -1570,3 +1570,24 @@ Suzuka
  9120
 erojen mediaani: 4336
 
+#---------------------------------------------------------------------------------
+# autojen teho määräytyy pareittain
+to tammikuuta 19 18:14:31 2017
+Monza
+10 4 124496
+6 4 126800
+8 4 128032
+11 4 129792
+9 4 134592
+7 4 140912
+4 4 142672
+5 4 147776
+2 4 148352
+3 4 159552
+ -5296
+ -6560
+ -14112
+ -5104
+ -11200
+erojen mediaani: -6560  #autot ajoivat hyvin huolimattomasti, leveillä linjoilla
+

@@ -58,11 +58,14 @@ CarPtr CarFactory::buildCar(int index, int numCars, Game & game)
     }
     else if (game.hasComputerPlayers())
     {
+
+        int index_paired = index - index % 2;
+
         // Introduce some variance to the power of computer players so that the
         // slowest cars have less power than the human player and the fastest
         // cars have more power than the human player.
-        desc.power                = defaultPower / 2 + (index + 1) * defaultPower / NUM_CARS;
-        desc.accelerationFriction = (0.3f + 0.4f * float(index + 1) / NUM_CARS) *
+        desc.power                = defaultPower / 2 + (index_paired + 1) * defaultPower / NUM_CARS;
+        desc.accelerationFriction = (0.3f + 0.4f * float(index_paired + 1) / NUM_CARS) *
             Game::instance().difficultyProfile().accelerationFrictionMultiplier(false);
         desc.dragQuadratic        = defaultDrag;
 

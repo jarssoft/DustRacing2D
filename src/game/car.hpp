@@ -178,6 +178,16 @@ public:
 
     CarSoundEffectManagerPtr soundEffectManager() const;
 
+    void setCarAhead(Car *value);
+
+    Car * carAhead() const;
+
+    void setCarBehind(Car *value);
+
+    Car * carBehind() const;
+
+    Car * nearestCar() const;
+
 private:
 
     void initForceGenerators(Description & desc);
@@ -226,6 +236,9 @@ private:
     MCVector3dF              m_leftBrakeGlowPos;
     MCVector3dF              m_rightBrakeGlowPos;
     bool                     m_hadHardCrash;
+
+    Car * m_carAhead;
+    Car * m_carBehind;
 };
 
 typedef std::shared_ptr<Car> CarPtr;

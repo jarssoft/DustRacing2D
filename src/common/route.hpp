@@ -68,11 +68,18 @@ public:
 
     RouteVector::const_iterator cend() const;
 
+    //! Time when car passed node last time.
+    void setDriveby(int time, int node);
+
+    int lastDriveby(int node) const;
+
 private:
 
     bool isClosed() const;
 
     std::vector<TargetNodePtr> m_route;
+
+    std::vector<int> m_lastDriveby;
 };
 
 #endif // ROUTE_HPP

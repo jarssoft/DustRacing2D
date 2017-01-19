@@ -73,6 +73,8 @@ void Route::buildFromVector(RouteVector & routeVector)
 {
     clear();
 
+     //m_lastDriveby.reserve(routeVector.size());
+
     std::sort(routeVector.begin(), routeVector.end(),
         [] (const TargetNodePtr lhs, const TargetNodePtr rhs)
         {
@@ -127,4 +129,14 @@ Route::RouteVector::const_iterator Route::cbegin() const
 Route::RouteVector::const_iterator Route::cend() const
 {
     return m_route.cend();
+}
+
+void Route::setDriveby(int time, int node)
+{
+    m_lastDriveby[node] = time;
+}
+
+int Route::lastDriveby(int node) const
+{
+    return m_lastDriveby[node];
 }

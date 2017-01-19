@@ -142,6 +142,7 @@ void Race::initCars()
 void Race::clearPositions()
 {
     m_positions.clear();
+    m_times.reserve(m_track->trackData().route().numNodes());
 }
 
 void Race::clearRaceFlags()
@@ -405,9 +406,23 @@ void Race::updateRouteProgress(Car & car)
             {
                 checkIfLapIsCompleted(car, route, currentTargetNodeIndex);
 
-                // Increase progress and update the positions hash
+                // Increase progress
                 car.setRouteProgression(car.routeProgression() + 1);
+
+                // Look-up opponets ahead and behind
+                int carsAhead = m_positions[car.routeProgression()].size();
+                if (carsAhead>0){
+                    int ahead = m_positions[car.routeProgression()][carsAhead-1];
+                    car.setCarAhead(m_cars[ahead]);
+                    m_cars[ahead]->setCarBehind(&car);
+                }else{
+                    car.setCarAhead(NULL);
+                }
+
+                // Update the positions hash
                 m_positions[car.routeProgression()].push_back(car.index());
+                //m_times[currentTargetNodeIndex]=m_timing.raceTime();
+                //route.setDriveby(m_timing.raceTime(), currentTargetNodeIndex);
 
                 // Switch to next check point
                 car.setPrevTargetNodeIndex(currentTargetNodeIndex);

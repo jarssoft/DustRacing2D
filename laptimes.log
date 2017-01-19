@@ -793,3 +793,780 @@ Straight
  -992
 erojen mediaani: -992
 
+to tammikuuta 12 20:50:32 2017
+Triangle
+ 0
+ 0
+ 0
+ 0
+ 0
+erojen mediaani: 0
+
+to tammikuuta 12 20:55:41 2017
+Triangle
+ 0
+ 0
+ 0
+ 0
+ 0
+erojen mediaani: 0
+
+to tammikuuta 12 20:58:31 2017
+Triangle
+ -6656
+ -96
+ 64
+ 1440
+ 2368
+erojen mediaani: 64
+
+to tammikuuta 12 21:02:50 2017
+Triangle
+11 4 61920
+10 4 63456
+9 4 64608
+8 4 64816
+7 4 68816
+6 4 69344
+5 4 73296
+4 4 74240
+3 4 78432
+2 4 81136
+1 4 87824
+ 1536
+ 208
+ 528
+ 944
+ 2704
+erojen mediaani: 944
+
+# koukkaus vain kun ei muita edessä
+
+to tammikuuta 12 22:23:21 2017
+Triangle
+11 4 61632
+10 4 62256
+9 4 64992
+8 4 65584
+7 4 68480
+6 4 69168
+5 4 72928
+4 4 73824
+3 4 79440
+2 4 80720
+1 4 85584
+ 624
+ 592
+ 688
+ 896
+ 1280
+erojen mediaani: 688
+
+to tammikuuta 12 22:33:58 2017
+Monza
+10 4 118016
+8 4 125424
+11 4 128352
+9 4 132064
+6 4 133456
+7 4 137392
+4 4 139280
+5 4 144240
+3 4 154816
+2 4 155776
+1 4 168016
+ -10336
+ -6640
+ -3936
+ -4960
+ 960
+erojen mediaani: -4960
+
+to tammikuuta 12 23:35:27 2017
+Triangle
+Monza
+ 32576
+ 576
+ 800
+ 832
+ 1024
+erojen mediaani: 832
+
+to tammikuuta 12 23:48:21 2017
+Monza
+ -400
+ -2608
+ -352
+ 512
+ -64
+erojen mediaani: -352
+
+pe tammikuuta 13 00:04:25 2017
+ 0
+ 0
+ 0
+ 0
+ 0
+erojen mediaani: 0
+
+pe tammikuuta 13 00:06:01 2017
+Monza
+Monza
+10 4 122736
+8 4 129344
+ 23536
+ 27952
+ -4720
+ -480
+ 640
+erojen mediaani: 640
+
+pe tammikuuta 13 14:13:50 2017
+Monza
+ 30880
+ 0
+ 0
+ 0
+ 0
+erojen mediaani: 0
+
+pe tammikuuta 13 14:17:37 2017
+Monza
+Monza
+ 1952
+ 992
+ 256
+ -480
+ 1168
+erojen mediaani: 992
+
+pe tammikuuta 13 14:33:19 2017
+Monza
+ 0
+ 0
+ 0
+ 0
+ 0
+erojen mediaani: 0
+
+pe tammikuuta 13 14:35:06 2017
+Monza
+ -928
+ -1408
+ 1168
+ 1568
+ 2048
+erojen mediaani: 1168
+
+pe tammikuuta 13 14:41:34 2017
+Monza
+11 4 128064
+10 4 128192
+8 4 128448
+9 4 131856
+7 4 137696
+6 4 138064
+5 4 143936
+4 4 144288
+3 4 154752
+2 4 155344
+1 4 167456
+ 128
+ -3408
+ 368
+ 352
+ 592
+erojen mediaani: 352
+
+pe tammikuuta 13 16:31:18 2017
+Monza
+Monza
+Twister
+ -1584
+ -656
+ -304
+ -20992
+ 416
+erojen mediaani: -656
+
+pe tammikuuta 13 16:41:05 2017
+Twister
+Twister
+11 4 64880
+10 4 66048
+9 4 67936
+ 1168
+ -14576
+ 2608
+ 3056
+ 4912
+erojen mediaani: 2608
+
+pe tammikuuta 13 16:46:20 2017
+Straight
+ 0
+ 0
+ 0
+ 0
+ 0
+erojen mediaani: 0
+
+pe tammikuuta 13 16:48:04 2017
+Twister
+Twister
+11 4 64672
+10 4 66688
+9 4 68080
+8 4 70560
+7 4 71104
+6 4 75760
+5 4 76704
+4 4 79344
+3 4 81344
+2 4 85792
+1 4 90096
+Twister
+ 2016
+ 2480
+ 4656
+ 2640
+ 4448
+erojen mediaani: 2640
+
+pe tammikuuta 13 17:07:32 2017
+Twister
+Twister
+Twister
+ 752
+ 736
+ -18816
+ 0
+ 0
+erojen mediaani: 0
+
+pe tammikuuta 13 17:10:13 2017
+Twister
+Twister
+ 1728
+ 1824
+ -320
+ 1232
+ 1888
+erojen mediaani: 1728
+
+pe tammikuuta 13 17:14:25 2017
+Twister
+Twister
+Twister
+ 1600
+ 1296
+ 0
+ 0
+ 0
+erojen mediaani: 0
+
+pe tammikuuta 13 17:17:45 2017
+Twister
+ 0
+ 0
+ 0
+ 0
+ 0
+erojen mediaani: 0
+
+pe tammikuuta 13 17:20:52 2017
+Monza
+ -7744
+ 24960
+ 720
+ -2928
+ 624
+erojen mediaani: 624
+
+# väistää etummaista
+
+pe tammikuuta 13 17:27:34 2017
+Monza
+10 4 117616
+8 4 126480
+11 4 128032
+9 4 132352
+6 4 133104
+7 4 137216
+4 4 140736
+5 4 144592
+2 4 152480
+3 4 155248
+ -10416
+ -5872
+ -4112
+ -3856
+ -2768
+erojen mediaani: -4112
+
+pe tammikuuta 13 18:21:56 2017
+Monza
+ 25152
+ -1296
+ 3040
+ 1152
+ 896
+erojen mediaani: 1152
+
+pe tammikuuta 13 19:28:27 2017
+Monza
+ -608
+ 80
+ -37376
+ 0
+ 0
+erojen mediaani: 0
+
+pe tammikuuta 13 19:33:16 2017
+Monza
+ -5808
+ -4320
+ 3008
+ 880
+ 512
+erojen mediaani: 512
+
+pe tammikuuta 13 19:42:33 2017
+Monza
+Monza
+10 4 130240
+ 31344
+ -5168
+ -2528
+ 3776
+ -1264
+erojen mediaani: -1264
+
+pe tammikuuta 13 19:56:11 2017
+Monza
+Monza
+ -2944
+ -1392
+ -672
+ -848
+ -42960
+erojen mediaani: -1392
+
+pe tammikuuta 13 20:00:41 2017
+Monza
+ -784
+ 1376
+ 0
+ 0
+ 0
+erojen mediaani: 0
+
+pe tammikuuta 13 20:04:47 2017
+Monza
+ 0
+ 0
+ 0
+ 0
+ 0
+erojen mediaani: 0
+
+pe tammikuuta 13 20:07:58 2017
+Monza
+ 0
+ 0
+ 0
+ 0
+ 0
+erojen mediaani: 0
+
+
+# väistää paremmin
+
+pe tammikuuta 13 20:13:44 2017
+Monza
+8 4 124288
+10 4 124336
+11 4 127600
+6 4 129488
+9 4 132144
+7 4 136976
+4 4 141568
+5 4 143824
+2 4 152432
+3 4 154272
+ -3264
+ -7856
+ -7488
+ -2256
+ -1840
+erojen mediaani: -3264
+
+la tammikuuta 14 19:18:58 2017
+Monza
+ 0
+ 0
+ 0
+ 0
+ 0
+erojen mediaani: 0
+
+# väistää mutta ei muuta ajolinjoja
+
+la tammikuuta 14 19:20:36 2017
+Monza
+10 4 117264
+8 4 124432
+11 4 127904
+9 4 132320
+6 4 132784
+7 4 137024
+4 4 141952
+5 4 144384
+ -10640
+ -7888
+ -4240
+ -2432
+ 784
+erojen mediaani: -4240
+#(törmäsi joka kerran loppusuoran jälkeiseen muuriin)
+la tammikuuta 14 19:31:53 2017
+Triangle
+11 4 62000
+10 4 62208
+9 4 65152
+8 4 65296
+7 4 68768
+6 4 69040
+5 4 72720
+4 4 74624
+3 4 78080
+2 4 80640
+1 4 88048
+ 208
+ 144
+ 272
+ 1904
+ 2560
+erojen mediaani: 272
+
+la tammikuuta 14 19:40:05 2017
+Straight
+10 4 110320
+11 4 111056
+9 4 116336
+8 4 117280
+6 4 122976
+7 4 132736
+5 4 136816
+4 4 139104
+3 4 146288
+2 4 152528
+ -736
+ 944
+ -9760
+ 2288
+ 6240
+erojen mediaani: 944
+
+la tammikuuta 14 19:50:54 2017
+Suzuka
+Suzuka
+11 4 114768
+9 4 117648
+7 4 122976
+10 4 127280
+5 4 130816
+8 4 132032
+3 4 136816
+6 4 138992
+4 4 144256
+1 4 145536
+2 4 156528
+ 12512
+ 14384
+ 16016
+ 13440
+ 19712
+erojen mediaani: 14384
+
+la tammikuuta 14 21:00:07 2017
+Suzuka
+ 6528
+ -22400
+ 2848
+ 8400
+ 4064
+erojen mediaani: 4064
+
+la tammikuuta 14 21:14:02 2017
+Suzuka
+ 368
+ 4128
+ 3808
+ 3248
+ 4272
+erojen mediaani: 3808
+
+la tammikuuta 14 21:17:48 2017
+Suzuka
+11 4 114944
+9 4 117488
+10 4 122640
+7 4 123904
+8 4 127648
+5 4 128160
+6 4 128288
+ 7696
+ 10160
+ 4384
+ -25520
+ 9472
+erojen mediaani: 7696
+
+la tammikuuta 14 21:27:11 2017
+Suzuka
+ -1024
+ 1216
+ 2384
+ 496
+ -36864
+erojen mediaani: 496
+
+la tammikuuta 14 21:30:26 2017
+Suzuka
+11 4 113696
+9 4 118160
+8 4 120352
+7 4 121504
+10 4 123088
+6 4 123888
+Suzuka
+5 4 137408
+4 4 133360
+3 4 135920
+2 4 145680
+1 4 152944
+ 9392
+ 2192
+ 2384
+ -4048
+ 9760
+erojen mediaani: 2384
+
+#interpolaatio, 4-osa jarru
+la tammikuuta 14 22:13:30 2017
+Twister
+10 4 64320
+11 4 64400
+8 4 66480
+9 4 66816
+7 4 68736
+6 4 70288
+5 4 71808
+4 4 75008
+3 4 76704
+2 4 80448
+1 4 84960
+ -80
+ -336
+ 1552
+ 3200
+ 3744
+erojen mediaani: 1552
+
+#interpolaatio, 4-osa jarru
+la tammikuuta 14 22:19:48 2017
+Twister
+11 4 64784
+10 4 66144
+8 4 66656
+9 4 66768
+7 4 68800
+6 4 70768
+5 4 72496
+4 4 74960
+3 4 77584
+2 4 81536
+1 4 83280
+ 1360
+ -112
+ 1968
+ 2464
+ 3952
+erojen mediaani: 1968
+
+#ei interpolatiota, normaali jarru
+la tammikuuta 14 22:28:35 2017
+Twister
+10 4 63952
+11 4 64272
+9 4 66544
+8 4 67072
+7 4 68800
+6 4 70048
+5 4 72528
+4 4 74672
+3 4 77152
+2 4 81024
+1 4 83840
+ -320
+ 528
+ 1248
+ 2144
+ 3872
+erojen mediaani: 1248
+
+la tammikuuta 14 22:39:19 2017
+Twister
+11 4 64368
+10 4 64624
+8 4 66112
+9 4 66944
+7 4 69312
+6 4 69792
+5 4 71968
+4 4 74528
+3 4 77712
+2 4 81168
+1 4 84336
+ 256
+ -832
+ 480
+ 2560
+ 3456
+erojen mediaani: 480
+
+la tammikuuta 14 22:53:15 2017
+Suzuka
+ 1808
+ 3696
+ 4608
+ 4992
+ 7008
+erojen mediaani: 4608
+
+la tammikuuta 14 22:57:27 2017
+Suzuka
+ 320
+ 3856
+ 5536
+ 4048
+ 3776
+erojen mediaani: 3856
+
+la tammikuuta 14 23:32:31 2017
+Suzuka
+ 3184
+ 3680
+ -27840
+ 1968
+ 3152
+erojen mediaani: 3152
+
+la tammikuuta 14 23:39:39 2017
+Suzuka
+ 1616
+ 9136
+ 1520
+ 3536
+ 4832
+erojen mediaani: 3536
+
+la tammikuuta 14 23:53:29 2017
+Suzuka
+ 0
+ 0
+ 0
+ 0
+ 0
+erojen mediaani: 0
+
+la tammikuuta 14 23:56:28 2017
+Suzuka
+ 0
+ 0
+ 0
+ 0
+ 0
+erojen mediaani: 0
+
+la tammikuuta 14 23:59:14 2017
+Suzuka
+ 12272
+ 10640
+ -21280
+ -25312
+ -25808
+erojen mediaani: -21280
+
+su tammikuuta 15 00:08:48 2017
+Suzuka
+ 0
+ 0
+ 0
+ 0
+ 0
+erojen mediaani: 0
+
+su tammikuuta 15 00:11:03 2017
+Suzuka
+ 272
+ 1248
+ 1584
+ 1920
+ 1584
+erojen mediaani: 1584
+
+su tammikuuta 15 10:38:23 2017
+Suzuka
+ 1680
+ 288
+ 1680
+ 192
+ 2176
+erojen mediaani: 1680
+
+#ilman interpolaatiota
+#float tilannenopeus = absSpeed * absSpeed/400;
+su tammikuuta 15 10:46:03 2017
+Suzuka
+9 4 117616
+8 4 118832
+11 4 119360
+10 4 120032
+6 4 121856
+7 4 122160
+5 4 126576
+4 4 134976
+3 4 135152
+2 4 137264
+1 4 147264
+ 672
+ 1216
+ -304
+ 8400
+ 2112
+erojen mediaani: 1216
+
+#interpolaatiolla
+#float tilannenopeus = absSpeed * absSpeed/400;
+su tammikuuta 15 10:56:56 2017
+Suzuka
+10 4 114432
+11 4 115040
+9 4 119888
+8 4 120944
+7 4 122208
+5 4 125360
+6 4 126544
+4 4 133376
+3 4 134160
+2 4 143280
+1 4 145232
+ -608
+ 1056
+ 4336
+ 8016
+ 9120
+erojen mediaani: 4336
+

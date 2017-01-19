@@ -76,6 +76,8 @@ Car::Car(Description & desc, MCSurface & surface, MCUint index, bool isHuman)
 , m_leftBrakeGlowPos(-21, 8, 0)
 , m_rightBrakeGlowPos(-21, -8, 0)
 , m_hadHardCrash(false)
+, m_carAhead(NULL)
+, m_carBehind(NULL)
 {
     // Override the default physics component to handle damage from impulses
     setPhysicsComponent(*(new CarPhysicsComponent(*this)));
@@ -298,6 +300,48 @@ bool Car::update()
 
 void Car::reset()
 {
+}
+
+void Car::setCarAhead(Car *value)
+{
+    m_carAhead = value;
+}
+
+Car* Car::carAhead() const
+{
+    return m_carAhead;
+}
+
+void Car::setCarBehind(Car *value)
+{
+    m_carBehind = value;
+}
+
+Car* Car::carBehind() const
+{
+    return m_carBehind;
+}
+
+Car *Car::nearestCar() const
+{
+    if(carAhead() == NULL){
+        if(carBehind() == NULL){
+            return NULL;
+        }else{
+            return carBehind();
+        }
+    }else{
+        if(carBehind() == NULL){
+            return carBehind();
+        }else{
+            MCVector3dF toAhead = carAhead()->location() - location();
+            MCVector3dF toBehind = carBehind()->location() - location();
+            if(toAhead.length() < toBehind.length())
+                return carAhead();
+            else
+                return carBehind();
+        }
+    }
 }
 
 void Car::collisionEvent(MCCollisionEvent & event)

@@ -132,6 +132,7 @@ private:
     // Tracks the order of the cars in the route.
     typedef std::unordered_map<int, std::vector<int> > PositionHash;
     mutable PositionHash m_positions;
+    std::vector<int> m_times;
 
     typedef std::shared_ptr<OffTrackDetector> OffTrackDetectorPtr;
     typedef std::vector<OffTrackDetectorPtr> OTDVector;

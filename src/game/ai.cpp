@@ -80,7 +80,7 @@ void AI::update(bool isRaceCompleted)
         m_car.clearStatuses();
 
         const Route & route = m_track->trackData().route();
-        calculateAngles(route.get(m_car.currentTargetNodeIndex()), route.get(m_car.nextTargetNodeIndex()));
+        calculateAngles(route.get(m_car.currentTargetNodeIndex()), route.get(m_car.nextTargetNodeIndex()));           
 
         steerControl();
 
@@ -118,18 +118,35 @@ void AI::calculateAngles(TargetNodePtr currentNode, TargetNodePtr nextNode)
 
     if(currentNode->index()==0)
         m_nextSegmentLenght=0;
+
+    if(m_car.nearestCar() != NULL){
+        MCVector3dF toNearestCar =  m_car.nearestCar()->location() - m_car.location();
+        m_angleToNearestCar = MCTrigonom::radToDeg(std::atan2(toNearestCar.j(), toNearestCar.i()));
+        m_distanceToNearestCar = toNearestCar.length();
+        m_speedOfNearestCar = m_car.nearestCar()->absSpeed();
+    }else{
+        m_angleToNearestCar = 0;
+        m_distanceToNearestCar = 99999;
+        m_speedOfNearestCar = 0;
+    }
+
 }
 
 void AI::steerControl()
 {
     MCFloat diff  = normalizeAngle(m_targetAngle - m_carAngle);
 
-    //koukataan segmenteillä ulkoa ja pisteillä sisältä
     if(m_car.index() % 2){
     }else{
-        if(m_nextSegmentLenght > 2){
-            diff -= normalizeAngle(m_nextSegmentAngle - m_targetAngle) * 0.0001 * m_distanceToTarget;
-        }
+        //if(m_distanceToNearestCar<100){
+        //}else{
+            //very simple polynomial interpolation
+
+            if(m_nextSegmentLenght > 0){
+                diff -= normalizeAngle(m_nextSegmentAngle - m_targetAngle) * 0.0001 * m_distanceToTarget;
+            }
+
+        //}
     }
 
     // PID-controller. This makes the computer players to turn and react faster
@@ -162,7 +179,7 @@ void AI::speedControl(TrackTile & currentTile, bool isRaceCompleted)
     // Braking / acceleration logic
     bool accelerate = true;
     bool brake      = false;
-    m_selitys="";
+    m_selitys="vapaana";
 
     const float absSpeed = m_car.absSpeed();
     if (isRaceCompleted)
@@ -209,32 +226,37 @@ void AI::speedControl(TrackTile & currentTile, bool isRaceCompleted)
                 }
             }
 
-        }else{
+        }else{               
 
             // tilannenopeus on iso, kun absoluuttinen nopeus on korkea lähellä mutkaa
             // vaihtelee välillä -0.5
-            float tilannenopeus = absSpeed * absSpeed / m_distanceToTarget;
+            //float tilannenopeus = absSpeed * absSpeed / (m_distanceToTarget*1);
+            float tilannenopeus = absSpeed * absSpeed/400;
 
             //adjust speed according to the difference between current and target angles
             if(m_distanceToTarget > 30 && false){
                 const MCFloat diff = normalizeAngle(m_targetAngle - m_carAngle);
 
-                    if(fabs(diff)>5 && tilannenopeus>0.36){
-                        brake = true;
-                        m_selitys+=QString("t ") + QString::number(tilannenopeus, 'f', 3)+", "+QString::number(fabs(diff), 'f', 1);
-                    }
-                    if(fabs(diff)>15 && tilannenopeus>0.25){
-                        brake = true;
-                        m_selitys+=QString("t ") + QString::number(tilannenopeus, 'f', 3)+", "+QString::number(fabs(diff), 'f', 1);
-                    }
-                    if(fabs(diff)>30 && tilannenopeus>0.16){
-                        accelerate = false;
-                        m_selitys+=QString("t ") + QString::number(tilannenopeus, 'f', 3)+", "+QString::number(fabs(diff), 'f', 1);
-                    }
-                    if(fabs(diff)>50 && tilannenopeus>0.09){
-                        accelerate = false;
-                        m_selitys+=QString("t ") + QString::number(tilannenopeus, 'f', 3)+", "+QString::number(fabs(diff), 'f', 1);
-                    }
+                if(fabs(diff)>10 && tilannenopeus>0.36){
+                    brake = true;
+                    m_selitys+=QString("t1");
+                    //m_selitys+=QString("t ") + QString::number(tilannenopeus, 'f', 3)+", "+QString::number(fabs(diff), 'f', 1);
+                }
+                if(fabs(diff)>20 && tilannenopeus>0.25){
+                    brake = true;
+                    m_selitys+=QString("t2");
+                   // m_selitys+=QString("t ") + QString::number(tilannenopeus, 'f', 3)+", "+QString::number(fabs(diff), 'f', 1);
+                }
+                if(fabs(diff)>40 && tilannenopeus>0.16){
+                    accelerate = false;
+                    m_selitys+=QString("t3");
+                    //m_selitys+=QString("t ") + QString::number(tilannenopeus, 'f', 3)+", "+QString::number(fabs(diff), 'f', 1);
+                }
+                if(fabs(diff)>80 && tilannenopeus>0.10){
+                    accelerate = false;
+                    m_selitys+=QString("t4");
+                   // m_selitys+=QString("t ") + QString::number(tilannenopeus, 'f', 3)+", "+QString::number(fabs(diff), 'f', 1);
+                }
 
             }
 
@@ -245,7 +267,7 @@ void AI::speedControl(TrackTile & currentTile, bool isRaceCompleted)
 
                 const MCFloat diff = fabs(normalizeAngle(m_targetAngle - m_nextSegmentAngle));
 
-                if(tilannenopeus>0.45 && diff>20){
+                if(tilannenopeus>0.45 && diff>20 && false){
                     brake = true;
                     m_selitys=QString("nt1 ") + QString::number(tilannenopeus, 'f', 3)+", "+QString::number(fabs(diff), 'f', 1);
                 }
@@ -261,16 +283,35 @@ void AI::speedControl(TrackTile & currentTile, bool isRaceCompleted)
                     brake = true;
                     m_selitys=QString("nt4 ") + QString::number(tilannenopeus, 'f', 3)+", "+QString::number(fabs(diff), 'f', 1);
                 }
-
                 if(tilannenopeus>0.20 && diff>110){
                     brake = true;
                     m_selitys=QString("nt5 ") + QString::number(tilannenopeus, 'f', 3)+", "+QString::number(fabs(diff), 'f', 1);
                 }
-                if(tilannenopeus>0.09 && diff>130){
+                /*
+                if(tilannenopeus>0.10 && diff>130){
                     brake = true;
                     m_selitys=QString("nt6 ") + QString::number(tilannenopeus, 'f', 3)+", "+QString::number(fabs(diff), 'f', 1)+", "+QString::number(m_nextSegmentLenght);
+                }*/
+            }
+
+            //don't push car ahead
+            if(m_distanceToNearestCar<100){
+
+                m_selitys="takaluukussa";
+
+                MCFloat diff=fabs(normalizeAngle(m_targetAngle-m_angleToNearestCar));
+                float nopeusero = absSpeed - m_speedOfNearestCar;
+                if(nopeusero>0){
+                    float tilannenopeus = nopeusero * nopeusero / (m_distanceToNearestCar-30);
+                    if(tilannenopeus>0.01 && diff < 20){
+                        brake = true;
+                        m_selitys="vaarassa osua, ";// + QString::number(nopeusero, 'f', 3);
+                    }else{
+                        m_selitys="ei vaaraa diff=";// + QString::number(diff, 'f', 3)+" tilannenopeus="+ QString::number(nopeusero, 'f', 3);
+                    }
                 }
             }
+
         }
 
         if (absSpeed < 3.6f * scale)
@@ -278,6 +319,7 @@ void AI::speedControl(TrackTile & currentTile, bool isRaceCompleted)
             accelerate = true;
             brake = false;
         }
+
     }
 
     if (brake)

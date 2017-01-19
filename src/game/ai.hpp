@@ -77,6 +77,10 @@ private:
     MCFloat m_nextSegmentAngle;
     MCFloat m_nextSegmentLenght;
 
+    MCFloat m_angleToNearestCar;
+    MCFloat m_distanceToNearestCar;
+    MCFloat m_speedOfNearestCar;
+
     QString m_selitys;
 
 };

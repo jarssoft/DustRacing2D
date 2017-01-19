@@ -138,15 +138,15 @@ void AI::steerControl()
 
     if(m_car.index() % 2){
     }else{
-        //if(m_distanceToNearestCar<100){
-        //}else{
+        //if opponet near select the inner curve
+        if(m_distanceToNearestCar<40){
+        }else{
             //very simple polynomial interpolation
-
             if(m_nextSegmentLenght > 0){
                 diff -= normalizeAngle(m_nextSegmentAngle - m_targetAngle) * 0.0001 * m_distanceToTarget;
             }
 
-        //}
+        }
     }
 
     // PID-controller. This makes the computer players to turn and react faster
@@ -230,8 +230,8 @@ void AI::speedControl(TrackTile & currentTile, bool isRaceCompleted)
 
             // tilannenopeus on iso, kun absoluuttinen nopeus on korkea lähellä mutkaa
             // vaihtelee välillä -0.5
-            //float tilannenopeus = absSpeed * absSpeed / (m_distanceToTarget*1);
-            float tilannenopeus = absSpeed * absSpeed/400;
+            float tilannenopeus = absSpeed * absSpeed / m_distanceToTarget;
+           // float tilannenopeus = absSpeed * absSpeed/400;
 
             //adjust speed according to the difference between current and target angles
             if(m_distanceToTarget > 30 && false){

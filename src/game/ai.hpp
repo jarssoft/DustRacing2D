@@ -82,6 +82,7 @@ private:
     MCFloat m_speedOfNearestCar;
 
     QString m_selitys;
+    int m_tick;
 
 };
 

@@ -111,6 +111,8 @@ set(SRC
     ../common/tracktilebase.cpp
     ../common/mapbase.cpp
     myAI/timelogger.cpp
+    myAI/kolmio.cpp
+    myAI/utils.cpp
     )
 
 set(RCS ${CMAKE_SOURCE_DIR}/data/icons/icons.qrc)

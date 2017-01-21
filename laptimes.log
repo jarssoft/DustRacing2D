@@ -1885,7 +1885,7 @@ Suzuka
  -48
 erojen mediaani: -48
 
-# jyrkkä leikkaus
+# jyrkkä leikkaus, (m_distanceToTarget < 120 && fabs(diff) < 16)
 
 pe tammikuuta 20 21:39:16 2017
 Suzuka
@@ -1905,4 +1905,235 @@ Suzuka
  -3616
  -7712
 erojen mediaani: -4752
+
+la tammikuuta 21 13:01:25 2017
+Twister
+10 4 64768
+11 4 65584
+8 4 67408
+9 4 68032
+7 4 70560
+6 4 70704
+4 4 74976
+5 4 75424
+3 4 79680
+2 4 81392
+ -816
+ -624
+ 144
+ -448
+ 1712
+erojen mediaani: -448
+
+la tammikuuta 21 13:07:04 2017
+Monza
+10 4 127392
+8 4 127904
+6 4 129984
+11 4 130432
+9 4 134944
+4 4 135136
+7 4 141024
+5 4 148480
+2 4 150224
+ -3040
+ -7040
+ -11040
+ -13344
+ 28320
+erojen mediaani: -7040 #ongelmia tiellä pysymysessa, ei jarrutuksia
+
+la tammikuuta 21 13:16:12 2017
+Triangle
+11 4 63504
+9 4 66912
+7 4 70768
+6 4 72384
+ -944
+ -4480
+ 1616
+ 48
+ -1408
+erojen mediaani: -944  #ongelmia tiellä pysymysessa, ei jarrutuksia
+
+la tammikuuta 21 13:21:18 2017
+Desert Storm
+11 4 194832
+10 4 202240
+9 4 203632
+8 4 209408
+7 4 210864
+6 4 212976
+5 4 220528
+4 4 221584
+3 4 239360
+2 4 242896
+ 7408
+ 5776
+ 2112
+ 1056
+ 3536
+erojen mediaani: 3536 # ei jarrutuksia, ei leikkauksia, ei muita ohjausliikkeitä
+
+la tammikuuta 21 18:49:54 2017
+Monza
+ 30400
+ 0
+ 0
+ 0
+ 0
+erojen mediaani: 0
+
+la tammikuuta 21 18:52:40 2017
+Monza
+ -3664
+ -4112
+ -2928
+ -2752
+ 42464
+erojen mediaani: -2928
+
+# sallittu ensimmäinen ehto nextxtSegmentLenght-hidastus
+
+la tammikuuta 21 18:56:28 2017
+Monza
+10 4 125232
+11 4 130064
+8 4 133376
+6 4 134192
+9 4 135680
+7 4 139888
+4 4 142064
+5 4 148000
+2 4 152880
+3 4 160480
+ -4832
+ -2304
+ -5696
+ -5936
+ -7600
+erojen mediaani: -5696 #ei ongelmia
+
+la tammikuuta 21 19:09:42 2017
+Monza
+Triangle
+10 4 61632
+11 4 63456
+9 4 67120
+8 4 67184
+6 4 68816
+7 4 70096
+4 4 74576
+5 4 76272
+2 4 82240
+3 4 82896
+ -1824
+ 64
+ -1280
+ -1696
+ -656
+erojen mediaani: -1280
+
+la tammikuuta 21 19:17:13 2017
+Infinity
+Twister
+10 4 69648
+11 4 70976
+8 4 73056
+9 4 74176
+7 4 77088
+6 4 80640
+5 4 82432
+4 4 82320
+3 4 89024
+2 4 90896
+1 4 99840
+ -1328
+ -1120
+ 3552
+ -112
+ 1872
+erojen mediaani: -112
+
+
+#suzuka toimii vaan kun sallitaan toleranssi:
+
+la tammikuuta 21 19:30:15 2017
+Suzuka
+10 4 111904
+11 4 115312
+8 4 118032
+9 4 120672
+6 4 123536
+4 4 125600
+7 4 129504
+5 4 133776
+2 4 139936
+3 4 140832
+Suzuka
+ -3408
+ -2640
+ -5968
+ -8176
+ -896
+erojen mediaani: -3408
+
+la tammikuuta 21 21:18:12 2017
+Monza
+6 4 126016
+8 4 127280
+9 4 133760
+11 4 136720
+4 4 137760
+10 4 137984
+7 4 141200
+5 4 149248
+2 4 150368
+3 4 160000
+ 1264
+ -6480
+ -15184
+ -11488
+ -9632
+erojen mediaani: -9632
+
+la tammikuuta 21 21:30:50 2017
+Twister
+10 4 64144
+11 4 65328
+8 4 66560
+9 4 67968
+7 4 70320
+6 4 71232
+5 4 75072
+4 4 75248
+3 4 80192
+2 4 81872
+1 4 88224
+Twister
+ -1184
+ -1408
+ 912
+ 176
+ 1680
+erojen mediaani: 176
+
+la tammikuuta 21 22:02:08 2017
+Triangle
+11 4 63312
+9 4 66208
+10 4 67920
+6 4 69872
+7 4 70288
+8 4 70992
+4 4 74480
+5 4 75568
+2 4 81520
+3 4 82848
+ 4608
+ 4784
+ -416
+ -1088
+ -1328
+erojen mediaani: -416   #ulosajoja
 

@@ -244,7 +244,8 @@ void AI::speedControl(TrackTile & currentTile, bool isRaceCompleted)
             //float tilannenopeus = absSpeed * absSpeed/400;
 
             //adjust speed according to the difference between current and target angles
-            if(m_distanceToTarget > 30 && false){
+            /*
+            if(m_distanceToTarget > 30){
                 const MCFloat diff = normalizeAngle(m_targetAngle - m_carAngle);
 
                 if(fabs(diff)>10 && tilannenopeus>0.36){
@@ -269,6 +270,7 @@ void AI::speedControl(TrackTile & currentTile, bool isRaceCompleted)
                 }
 
             }
+            */
 
             //brakes if car is on wrong course before the next segment
 
@@ -277,19 +279,18 @@ void AI::speedControl(TrackTile & currentTile, bool isRaceCompleted)
             Kolmio kolmio;
             kolmio.setABLenght(m_distanceToTarget);
             kolmio.setCALenght(m_distanceToTarget);
-            kolmio.setBCLenght(100);
+            kolmio.setBCLenght(80);
             kolmio.suhde();
             double toleranssi = MCTrigonom::radToDeg(kolmio.getAAngle());
             assert(toleranssi>0);
             //m_selitys+=QString(" t")+ QString::number(toleranssi, 'f', 5);
             //m_selitys+=QString(" t")+QString::number(m_tick++, 'f', 5)+QString(" ")+ QString::number(m_distanceToTarget, 'f', 5);
 
-
             if(m_nextSegmentLenght > 2){
 
-                const MCFloat diff = fabs(normalizeAngle(m_targetAngle - m_nextSegmentAngle))-toleranssi;
+                const MCFloat diff = fabs(normalizeAngle(m_targetAngle - m_nextSegmentAngle)) - toleranssi;
 
-                if(tilannenopeus>0.45 && diff>20 && false){
+                if(tilannenopeus>0.45 && diff>20){
                     brake = true;
                     m_selitys=QString("nt1 ") + QString::number(tilannenopeus, 'f', 3)+", "+QString::number(fabs(diff), 'f', 1)+", t"+ QString::number(toleranssi, 'f', 3);
                 }
@@ -333,7 +334,6 @@ void AI::speedControl(TrackTile & currentTile, bool isRaceCompleted)
                     }
                 }
             }
-
         }
 
         if (absSpeed < 3.6f * scale)
@@ -341,7 +341,6 @@ void AI::speedControl(TrackTile & currentTile, bool isRaceCompleted)
             accelerate = true;
             brake = false;
         }
-
     }
 
     if (brake)

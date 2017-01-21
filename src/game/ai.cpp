@@ -279,7 +279,7 @@ void AI::speedControl(TrackTile & currentTile, bool isRaceCompleted)
             Kolmio kolmio;
             kolmio.setABLenght(m_distanceToTarget);
             kolmio.setCALenght(m_distanceToTarget);
-            kolmio.setBCLenght(80);
+            kolmio.setBCLenght(30);
             kolmio.suhde();
             double toleranssi = MCTrigonom::radToDeg(kolmio.getAAngle());
             assert(toleranssi>0);
